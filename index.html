@@ -15,9 +15,71 @@
 		</header>
 		<div class="content">
 			<h2 class="subTitle">Calculate your contract!</h2>
+			<div class="form">
+				<p>Contract length: </p>
+				<input type="radio" id="zero" name="conlength" value=0 checked="checked">
+				<label for="zero">0 years</label><br>
+				<input type="radio" id="one" name="conlength" value=1>
+				<label for="one">1 year</label><br>
+				<input type="radio" id="two" name="conlength" value=2>
+				<label for="two">2 years</label><br>
+				<input type="radio" id="three" name="conlength" value=3>
+				<label for="three">3 years</label><br>
+				<p>Plan: </p>
+				<input type="radio" id="basic" name="plantype" value=49.99 checked="checked">
+				<label for="basic">Basic</label><br>
+				<input type="radio" id="medium" name="plantype" value=69.99>
+				<label for="medium">Medium</label><br>
+				<input type="radio" id="advanced" name="plantype" value=99.99>
+				<label for="advanced">Advanced</label><br>
+				<p>Router: </p>
+				<input type="radio" id="routeryes" name="router" value=1 checked="checked">
+				<label for="routeryes">Yes</label>
+				<input type="radio" id="routerno" name="router" value=0>
+				<label for="routerno">No</label>
+				<p>Cable type: </p>
+				<input type="radio" id="regcable" name="cabletype" value="regcable" checked="checked">
+				<label for="regcable">Regular</label>
+				<input type="radio" id="undercable" name="cabletype" value="undercable">
+				<label for="undercable">Underground</label><br><br>
+				<label for="cableamount">Amount(ft) </label>
+				<input type="text" id="cableamount" name="cableamount">
+
+
+
+
+				
+				<br><br>
+				<button onclick="calculate()">Calculate</button><br><br>
+				<p id="result"></p>
+			</div>
 		</div>
 		<footer>
 		</footer>
+	<script>
+		function calculate()
+		{
+			if (document.getElementById("zero").checked) {
+				var conlength = 0;
+			} else if (document.getElementById("one").checked) {
+				var conlength = 1;
+			} else if (document.getElementById("two").checked) {
+				var conlength = 2;
+			} else if (document.getElementById("three").checked) {
+				var conlength = 3;
+			}
+
+			if (document.getElementById("basic").checked) {
+				var planrate = 49.99
+			} else if (document.getElementById("medium").checked) {
+				var planrate = 69.99
+			} else if (document.getElementById("advanced").checked) {
+				var planrate = 89.99
+			}
+
+			document.getElementById("result").innerHTML="Contract: " + conlength +"<br>" + "PlanRate: " + planrate;	
+		}
+	</script>
 	</body>
 
 </html>
