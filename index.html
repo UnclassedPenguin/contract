@@ -16,7 +16,8 @@
 		<div class="content">
 			<h2 class="subTitle">Calculate your contract!</h2>
 			<div class="form">
-				<p>Contract length: </p>
+
+				<h3>Contract length: </h3>
 				<input type="radio" id="zero" name="conlength" value=0 checked="checked">
 				<label for="zero">0 years</label><br>
 				<input type="radio" id="one" name="conlength" value=1>
@@ -25,38 +26,41 @@
 				<label for="two">2 years</label><br>
 				<input type="radio" id="three" name="conlength" value=3>
 				<label for="three">3 years</label><br>
-				<p>Plan: </p>
+
+				<h3>Plan: </h3>
 				<input type="radio" id="basic" name="plantype" value=49.99 checked="checked">
 				<label for="basic">Basic</label><br>
 				<input type="radio" id="medium" name="plantype" value=69.99>
 				<label for="medium">Medium</label><br>
 				<input type="radio" id="advanced" name="plantype" value=99.99>
 				<label for="advanced">Advanced</label><br>
-				<p>Router: </p>
+
+				<h3>Router: </h3>
 				<input type="radio" id="routeryes" name="router" value=1 checked="checked">
 				<label for="routeryes">Yes</label>
 				<input type="radio" id="routerno" name="router" value=0>
 				<label for="routerno">No</label>
-				<p>Cable type: </p>
+
+				<h3>Cable type: </h3>
 				<input type="radio" id="regcable" name="cabletype" value="regcable" checked="checked">
 				<label for="regcable">Regular</label>
 				<input type="radio" id="undercable" name="cabletype" value="undercable">
 				<label for="undercable">Underground</label><br><br>
 				<label for="cableamount">Amount(ft) </label>
-				<input type="text" id="cableamount" name="cableamount">
-
-
-
-
+				<input type="text" id="cableamount" placeholder=0 name="cableamount">
 				
 				<br><br>
 				<button onclick="calculate()">Calculate</button><br><br>
 				<p id="result"></p>
+
 			</div>
 		</div>
+
 		<footer>
 		</footer>
+
 	<script>
+
 		function calculate()
 		{
 			if (document.getElementById("zero").checked) {
@@ -77,9 +81,54 @@
 				var planrate = 89.99
 			}
 
-			document.getElementById("result").innerHTML="Contract: " + conlength +"<br>" + "PlanRate: " + planrate;	
+			if (document.getElementById("routeryes").checked) {
+				var router = 100
+			} else if (document.getElementById("routerno").checked) {
+				var router = 0
+			}
+			
+			if (document.getElementById("regcable").checked) {
+				var cabletype = "reg" 
+				var cableprice = .25
+			} else if (document.getElementById("undercable").checked) {
+				var cabletype = "under" 
+				var cableprice = 1
+			}
+			let cableamount = document.getElementById("cableamount").value;
+			let totalcableprice = cableamount * cableprice
+
+			let todaysdate = Date()
+			const d = new Date()
+			let day = d.getDate()
+			let month = d.getMonth()
+			let year = d.getFullYear()
+
+			function daysInMonth(month, year) {
+    			return new Date(year, month, 0).getDate();
+			}	
+			
+			let daysinmonth = daysInMonth((month + 1), year)
+			let daysleft = daysinmonth - day
+			let proratedamount = planrate * (daysleft/daysinmonth)
+
+			document.getElementById("result").innerHTML= 
+				  "Date: " + todaysdate + "<br>" 
+				+ "Day: " + day + "<br>" 
+				+ "Month: " + month + "<br>"
+				+ "Days In Month: " + daysinmonth + "<br>"
+				+ "Days Left: " + daysleft + "<br>"
+				+ "Contract: " + conlength +"<br>" 
+				+ "PlanRate: " + planrate + "<br>" 
+				+ "Prorated plan: " + proratedamount + "<br>"
+				+ "Router: " + router + "<br>" 
+				+ "Cable Type: " + cabletype + "<br>" 
+				+ "Cable Price: " + cableprice + "<br>" 
+				+ "Cable Amount: " + cableamount + "<br>" 
+				+ "Total Cable Price: " + totalcableprice;	
 		}
+
 	</script>
+
 	</body>
 
 </html>
