@@ -65,59 +65,73 @@
 		{
 			if (document.getElementById("zero").checked) {
 				var conlength = 0;
+				var conprice = 400;
 			} else if (document.getElementById("one").checked) {
 				var conlength = 1;
+				var conprice = 300;
 			} else if (document.getElementById("two").checked) {
 				var conlength = 2;
+				var conprice = 200;
 			} else if (document.getElementById("three").checked) {
 				var conlength = 3;
+				var conprice = 100;
 			}
 
 			if (document.getElementById("basic").checked) {
-				var planrate = 49.99
+				var planrate = 49.99;
 			} else if (document.getElementById("medium").checked) {
-				var planrate = 69.99
+				var planrate = 69.99;
 			} else if (document.getElementById("advanced").checked) {
-				var planrate = 89.99
+				var planrate = 89.99;
 			}
 
 			if (document.getElementById("routeryes").checked) {
-				var router = 100
+				var router = 100;
 			} else if (document.getElementById("routerno").checked) {
-				var router = 0
+				var router = 0;
 			}
 			
 			if (document.getElementById("regcable").checked) {
-				var cabletype = "reg" 
-				var cableprice = .25
+				var cabletype = "reg"; 
+				var cableprice = 0; 
 			} else if (document.getElementById("undercable").checked) {
-				var cabletype = "under" 
-				var cableprice = 1
+				var cabletype = "under"; 
+				var cableprice = 1;
 			}
-			let cableamount = document.getElementById("cableamount").value;
-			let totalcableprice = cableamount * cableprice
+			var cableamount = document.getElementById("cableamount").value;
+			var totalcableprice = cableamount * cableprice;
 
-			let todaysdate = Date()
-			const d = new Date()
-			let day = d.getDate()
-			let month = d.getMonth()
-			let year = d.getFullYear()
+			var todaysdate = Date();
+			const d = new Date();
+			var day = d.getDate();
+			var month = d.getMonth();
+			var year = d.getFullYear();
 
 			function daysInMonth(month, year) {
     			return new Date(year, month, 0).getDate();
 			}	
 			
-			let daysinmonth = daysInMonth((month + 1), year)
-			let daysleft = daysinmonth - day
-			let proratedamount = planrate * (daysleft/daysinmonth)
+			var daysinmonth = daysInMonth((month + 1), year);
+			var daysleft = daysinmonth - day;
+			var proratedamount = planrate * (daysleft/daysinmonth);
+			
+
+			var subtotal = conprice + router + totalcableprice + proratedamount;  
+			var tax = subtotal * 0.05;
+			var total = subtotal + tax; 
 
 			document.getElementById("result").innerHTML= 
-				  "Date: " + todaysdate + "<br>" 
+				  "Date: " + todaysdate + "<br><br>" 
+				+ "Prorate: " + proratedamount.toFixed(2) + "<br>"
+				+ "Subtotal: " + subtotal.toFixed(2) + "<br>"
+				+ "Tax: " + tax.toFixed(2) + "<br>"
+				+ "Total: " + total.toFixed(2) + "<br><br><br>"
 				+ "Day: " + day + "<br>" 
 				+ "Month: " + month + "<br>"
 				+ "Days In Month: " + daysinmonth + "<br>"
 				+ "Days Left: " + daysleft + "<br>"
 				+ "Contract: " + conlength +"<br>" 
+				+ "Contract Price: " + conprice + "<br>"
 				+ "PlanRate: " + planrate + "<br>" 
 				+ "Prorated plan: " + proratedamount + "<br>"
 				+ "Router: " + router + "<br>" 
