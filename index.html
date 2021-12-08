@@ -15,6 +15,7 @@
 		</header>
 		<div class="content">
 			<h2 class="subTitle">Calculate your contract!</h2>
+			<h4 id="date"></h4>
 			<div class="form">
 
 				<h3>Contract length: </h3>
@@ -60,6 +61,8 @@
 		</footer>
 
 	<script>
+		var todaysdate = Date();
+		document.getElementById("date").innerHTML = todaysdate
 
 		function calculate()
 		{
@@ -126,6 +129,7 @@
 				+ "Subtotal: " + subtotal.toFixed(2) + "<br>"
 				+ "Tax: " + tax.toFixed(2) + "<br>"
 				+ "Total: " + total.toFixed(2) + "<br><br><br>"
+			/*
 				+ "Day: " + day + "<br>" 
 				+ "Month: " + month + "<br>"
 				+ "Days In Month: " + daysinmonth + "<br>"
@@ -139,6 +143,7 @@
 				+ "Cable Price: " + cableprice + "<br>" 
 				+ "Cable Amount: " + cableamount + "<br>" 
 				+ "Total Cable Price: " + totalcableprice;	
+				*/
 		}
 
 	</script>
