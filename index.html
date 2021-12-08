@@ -51,7 +51,8 @@
 				<input type="text" id="cableamount" placeholder=0 name="cableamount">
 				
 				<br><br>
-				<button onclick="calculate()">Calculate</button><br><br>
+				<button onclick="calculate()">Calculate</button>
+                                <button on click="clear()">Clear</button><br><br>
 				<p id="result"></p>
 
 			</div>
@@ -64,6 +65,10 @@
 	<script>
 		var todaysdate = Date();
 		document.getElementById("date").innerHTML = todaysdate
+         
+                function clear() {
+                    document.getElementById("result").innerHTML = ""
+                }
 
 		function calculate()
 		{
