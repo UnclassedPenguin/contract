@@ -17,7 +17,7 @@
 			<div class="col-md-2">
 			</div>
 			<div class="col-md-8 text-center">
-			<h1 class="mainTitle">Unclassed Contract Calculator</h1>
+			<h1 class="mainTitle pt-3">Unclassed Contract Calculator</h1>
 			</div>
 			<div class="col-md-2">
 			</div>
@@ -29,10 +29,10 @@
 		<div class="col-md-6">
 		<div class="content">
 			<h2 class="subTitle">Calculate your contract!</h2>
-			<h4 id="date"></h4>
+			<p id="date"></p>
 			<div class="form">
 
-				<h3>Contract length: </h3>
+				<h3 class="py-2">Contract length: </h3>
 				<input type="radio" id="zero" name="conlength" value=0 checked="checked">
 				<label for="zero">0 years</label><br>
 				<input type="radio" id="one" name="conlength" value=1>
@@ -42,7 +42,7 @@
 				<input type="radio" id="three" name="conlength" value=3>
 				<label for="three">3 years</label><br>
 
-				<h3>Plan: </h3>
+				<h3 class="py-2">Plan: </h3>
 				<input type="radio" id="basic" name="plantype" value=49.99 checked="checked">
 				<label for="basic">Basic</label><br>
 				<input type="radio" id="medium" name="plantype" value=69.99>
@@ -50,13 +50,13 @@
 				<input type="radio" id="advanced" name="plantype" value=99.99>
 				<label for="advanced">Advanced</label><br>
 
-				<h3>Router: </h3>
+				<h3 class="py-2">Router: </h3>
 				<input type="radio" id="routeryes" name="router" value=1 checked="checked">
 				<label for="routeryes">Yes</label>
 				<input type="radio" id="routerno" name="router" value=0>
 				<label for="routerno">No</label>
 
-				<h3>Cable type: </h3>
+				<h3 class="py-2">Cable type: </h3>
 				<input type="radio" id="regcable" name="cabletype" value="regcable" checked="checked">
 				<label for="regcable">Regular</label>
 				<input type="radio" id="undercable" name="cabletype" value="undercable">
@@ -65,8 +65,8 @@
 				<input type="text" id="cableamount" placeholder=0 name="cableamount">
 				
 				<br><br>
-				<button onclick="calculate()" id="calculate">Calculate</button>
-				<button onclick="clearDiv()" id="clear">Clear</button><br><br>
+				<button type="button" class="btn btn-light btn-sml" onclick="calculate()" id="calculate">Calculate</button>
+				<button type="button" class="btn btn-light btn-sml" onclick="clearDiv()" id="clear">Clear</button><br><br>
 				<p id="result"></p>
 
 			</div>
