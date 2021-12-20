@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content='width=device-width, initial-scale=1.0'>
+		<meta name="keywords" content="">
+		<meta name="description" content="Unclassed Penguin Contract Calculator">
+	    <link rel="stylesheet" type="text/css" href="style.css"> 
+		<title>Unclassed Contract Calculator</title>
+	</head>
+
+	<body>
+		<header>
+			<h1 class="mainTitle">Unclassed Contract Calculator</h1>
+		</header>
+		<div class="content">
+			<h2 class="subTitle">Calculate your contract!</h2>
+			<h4 id="date"></h4>
+			<div class="form">
+
+				<h3>Contract length: </h3>
+				<input type="radio" id="zero" name="conlength" value=0 checked="checked">
+				<label for="zero">0 years</label><br>
+				<input type="radio" id="one" name="conlength" value=1>
+				<label for="one">1 year</label><br>
+				<input type="radio" id="two" name="conlength" value=2>
+				<label for="two">2 years</label><br>
+				<input type="radio" id="three" name="conlength" value=3>
+				<label for="three">3 years</label><br>
+
+				<h3>Plan: </h3>
+				<input type="radio" id="basic" name="plantype" value=49.99 checked="checked">
+				<label for="basic">Basic</label><br>
+				<input type="radio" id="medium" name="plantype" value=69.99>
+				<label for="medium">Medium</label><br>
+				<input type="radio" id="advanced" name="plantype" value=99.99>
+				<label for="advanced">Advanced</label><br>
+
+				<h3>Router: </h3>
+				<input type="radio" id="routeryes" name="router" value=1 checked="checked">
+				<label for="routeryes">Yes</label>
+				<input type="radio" id="routerno" name="router" value=0>
+				<label for="routerno">No</label>
+
+				<h3>Cable type: </h3>
+				<input type="radio" id="regcable" name="cabletype" value="regcable" checked="checked">
+				<label for="regcable">Regular</label>
+				<input type="radio" id="undercable" name="cabletype" value="undercable">
+				<label for="undercable">Underground</label><br><br>
+				<label for="cableamount">Amount(ft) </label>
+				<input type="text" id="cableamount" placeholder=0 name="cableamount">
+				
+				<br><br>
+				<button onclick="calculate()" id="calculate">Calculate</button>
+				<button onclick="clearDiv()" id="clear">Clear</button><br><br>
+				<p id="result"></p>
+
+			</div>
+
+		</div>
+
+		<footer>
+			<p style="font-size:80%;">Copyright 2021 <a href="https://github.com/unlassedpenguin" target="_blank">UnclassedPenguin</a> //  <a href="https://unclassed.ca/" target="_blank">Blog</a></p>
+		</footer>
+
+	<script>
+		var todaysdate = Date();
+		document.getElementById("date").innerHTML = todaysdate;
+         
+		function clearDiv() {
+			document.getElementById("result").innerHTML = ""
+		}
+
+		function calculate()
+		{
+			if (document.getElementById("zero").checked) {
+				var conlength = 0;
+				var conprice = 400;
+			} else if (document.getElementById("one").checked) {
+				var conlength = 1;
+				var conprice = 300;
+			} else if (document.getElementById("two").checked) {
+				var conlength = 2;
+				var conprice = 200;
+			} else if (document.getElementById("three").checked) {
+				var conlength = 3;
+				var conprice = 100;
+			}
+
+			if (document.getElementById("basic").checked) {
+				var planrate = 49.99;
+			} else if (document.getElementById("medium").checked) {
+				var planrate = 69.99;
+			} else if (document.getElementById("advanced").checked) {
+				var planrate = 89.99;
+			}
+
+			if (document.getElementById("routeryes").checked) {
+				var router = 100;
+			} else if (document.getElementById("routerno").checked) {
+				var router = 0;
+			}
+			
+			if (document.getElementById("regcable").checked) {
+				var cabletype = "reg"; 
+				var cableprice = 0; 
+			} else if (document.getElementById("undercable").checked) {
+				var cabletype = "under"; 
+				var cableprice = 1;
+			}
+			var cableamount = document.getElementById("cableamount").value;
+			var totalcableprice = cableamount * cableprice;
+
+			var todaysdate = Date();
+			const d = new Date();
+			var day = d.getDate();
+			var month = d.getMonth();
+			var year = d.getFullYear();
+
+			function daysInMonth(month, year) {
+    			return new Date(year, month, 0).getDate();
+			}	
+			
+			var daysinmonth = daysInMonth((month + 1), year);
+			var daysleft = daysinmonth - day;
+			var proratedamount = planrate * (daysleft/daysinmonth);
+			
+
+			var subtotal = conprice + router + totalcableprice + proratedamount;  
+			var tax = subtotal * 0.05;
+			var total = subtotal + tax; 
+
+			document.getElementById("result").innerHTML= 
+				  "Date: " + todaysdate + "<br><br>" 
+				+ "Prorate: " + proratedamount.toFixed(2) + "<br>"
+				+ "Subtotal: " + subtotal.toFixed(2) + "<br>"
+				+ "Tax: " + tax.toFixed(2) + "<br>"
+				+ "Total: " + total.toFixed(2) + "<br><br><br>"
+				/*
+				+ "Day: " + day + "<br>" 
+				+ "Month: " + month + "<br>"
+				+ "Days In Month: " + daysinmonth + "<br>"
+				+ "Days Left: " + daysleft + "<br>"
+				+ "Contract: " + conlength +"<br>" 
+				+ "Contract Price: " + conprice + "<br>"
+				+ "PlanRate: " + planrate + "<br>" 
+				+ "Prorated plan: " + proratedamount + "<br>"
+				+ "Router: " + router + "<br>" 
+				+ "Cable Type: " + cabletype + "<br>" 
+				+ "Cable Price: " + cableprice + "<br>" 
+				+ "Cable Amount: " + cableamount + "<br>" 
+				+ "Total Cable Price: " + totalcableprice;	
+				*/
+		}
+
+	</script>
+
+	</body>
+
+</html>
